@@ -1,12 +1,16 @@
-import './App.css'
+import './styles/output.css'
+import Viandas from './components/Viandas'
+import {Navbar} from './components/Navbar'
 
 function App() {
 
   return (
     <>
-      <h1>Hola!!!</h1>
+        <Navbar />
+        <Viandas />
     </>
   )
 }
 
 export default App
+
