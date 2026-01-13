@@ -1,5 +1,5 @@
 import './styles/output.css'
-import Viandas from './components/Viandas'
+import {Viandas} from './components/Viandas'
 import {Navbar} from './components/Navbar'
 
 function App() {
