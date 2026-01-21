@@ -1,13 +1,13 @@
 import './styles/output.css'
-import {Viandas} from './components/Viandas'
-import {Navbar} from './components/Navbar'
+import { ViandasContainer } from './components/ViandasContainer'
+import { Navbar } from './components/Navbar'
 
 function App() {
 
   return (
     <>
-        <Navbar />
-        <Viandas />
+      <Navbar />
+      <ViandasContainer />
     </>
   )
 }
