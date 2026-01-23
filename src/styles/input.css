@@ -9,6 +9,7 @@
     --color-bg: #F0FDF4;
     --color-text: #431407;
     --font-primary: "Plus Jakarta Sans", sans-serif;
+    
 }
 
 @layer utilities {

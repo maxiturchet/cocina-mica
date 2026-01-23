@@ -1,24 +1,63 @@
-import { useState } from "react"
+import { useState, useEffect } from 'react';
+import { ViandaDiaria } from './ViandaDiaria';
+
+const NavLink = ({ href, children, className = "", isButton = false }) => {
+  const baseClasses = "transition-all duration-200";
+  const buttonClasses = isButton
+    ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary"
+    : "hover:underline underline-offset-4 decoration-secondary";
+
+  return (
+    <a
+      href={href}
+      className={`${baseClasses} ${buttonClasses} ${className}`}
+    >
+      {children}
+    </a>
+  );
+};
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '#nosotros', text: 'Nosotros' },
+    { href: '#contacto', text: 'Contacto' },
+    { href: '#milanesas', text: 'Milanesas' },
+    { href: '#pedido', text: '¡Hacé tu pedido!', isButton: true },
+  ];
 
   return (
-    <>
-      {/* Mobile menu - visible on screens < 768px */}
-      <nav className="h-12 md:hidden w-full flex justify-between items-center bg-white shadow-sm px-6">
-        <section className="flex ">
-          <div className="flex items-center">
-            <svg className="w-12 h-12">
-              <use href="/sprites.svg#logo"></use>
-            </svg>
-            <p className="text-xs font-[Georgia] font-light text-primary">cocina mica</p>
+    <header className="relative">
+      {/* Hero Section with Background */}
+      <section className={`bg-[url('/cooking-top-vacio.webp')] bg-fixed bg-cover transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
+        }`}>
+        {/* Mobile Navigation */}
+        <nav className="md:hidden w-full flex justify-between items-center bg-white/95 backdrop-blur-sm shadow-lg px-6 py-3">
+          <div className="flex items-center gap-3">
+            <div className="bg-white rounded-full p-1">
+              <svg className="w-8 h-8" fill="currentColor">
+                <use href="/sprites.svg#logo" />
+              </svg>
+            </div>
+            <span className="text-sm font-serif text-gray-800 font-medium">Cocina Mica</span>
           </div>
-        </section>
-        <section className="flex items-center justify-between gap-4">
+
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -27,32 +66,55 @@ export const Navbar = () => {
               )}
             </svg>
           </button>
-        </section>
-      </nav>
+        </nav>
 
-      {/* Mobile menu dropdown */}
-      {isOpen && (
-        <div className="md:hidden absolute top-15 left-0 right-0 bg-white shadow-lg z-50 border-t">
-          <div className="flex flex-col p-4 space-y-2">
-            <a href="nosotros" className="text-gray-700 hover:text-primary transition-colors py-2">Nosotros</a>
-            <a href="contacto" className="text-gray-700 hover:text-primary transition-colors py-2">Contacto</a>
+        {/* Mobile Menu Dropdown */}
+        {isOpen && (
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg z-50 border-t">
+            <div className="flex flex-col p-4 space-y-3">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-700 hover:text-primary py-2"
+                >
+                  {link.text}
+                </NavLink>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Desktop menu - visible on screens >= 768px */}
-      <nav className="text-xs hidden md:flex w-full h-18 justify-around items-center bg-white shadow-sm">
-        <div className="h-full flex items-center gap-2 cursor-pointer">
-          <svg className="w-20 h-20">
-            <use href="/sprites.svg#logo"></use>
-          </svg>
-          <p className="text-lg text-dark font-primary font-bold text-grey-200">cocina mica</p>
-        </div>
-        <ul className="flex justify-center space-x-8">
-          <li><a href="nosotros" className="text-gray-700 text-lg hover:text-primary transition-colors">Nosotros</a></li>
-          <li><a href="contacto" className="text-gray-700 text-lg hover:text-primary transition-colors">Contacto</a></li>
-        </ul>
-      </nav>
-    </>
-  )
-}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex w-full h-24 justify-center items-center">
+          <div className="container mx-auto px-8 flex justify-between items-center w-full">
+            <div className="flex items-center gap-4 cursor-pointer group">
+              <div className="bg-white rounded-full p-2 group-hover:scale-110 transition-transform">
+                <svg className="w-16 h-16" fill="currentColor">
+                  <use href="/sprites.svg#logo" />
+                </svg>
+              </div>
+              <h1 className="text-2xl text-white font-bold">Cocina Mica</h1>
+            </div>
+
+            <ul className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <NavLink
+                    href={link.href}
+                    className={`text-white text-xl ${link.isButton ? '' : 'hover:text-white'}`}
+                    isButton={link.isButton}
+                  >
+                    {link.text}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+
+        <ViandaDiaria />
+      </section>
+    </header>
+  );
+};
