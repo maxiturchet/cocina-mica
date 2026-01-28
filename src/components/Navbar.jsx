@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { ViandaDiaria } from './ViandaDiaria';
 import { createBrowserRouter, RouterProvider, Link, Outlet } from 'react-router-dom';
 
-const NavLink = ({ href, children, className = "", isbutton = false, ...props}) => {
+const NavLink = ({ href, children, className = "", isbutton = false, ...props }) => {
   const baseClasses = "transition-all duration-200";
   const buttonClasses = isbutton
     ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary md:text-sm lg:text-xl"
     : "hover:underline underline-offset-4 decoration-secondary";
 
-  if (href.startsWith('#') || href.startsWith('http')){
+  if (href.startsWith('#') || href.startsWith('http')) {
     return <a href={href} className={`${baseClasses} ${buttonClasses} ${className}`} {...props}>{children}</a>
   }
   return <Link build to={href} className={`${baseClasses} ${buttonClasses} ${className}`}>{children}</Link>
@@ -29,9 +29,9 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '#nosotros', text: 'Nosotros' },
+    { href: '/nosotros', text: 'Nosotros' },
     { href: '/milanesas', text: 'Milanesas' },
-    { href: 'https://wa.link/44395n', text: '¡Hacé tu pedido!', isbutton: true, target: '_blank', rel:'noopener noreferrer' },
+    { href: 'https://wa.link/44395n', text: '¡Hacé tu pedido!', isbutton: true, target: '_blank', rel: 'noopener noreferrer' },
   ];
 
   return (
@@ -87,7 +87,7 @@ export const Navbar = () => {
           <nav className="hidden md:flex w-full h-25 justify-center items-center">
             <div className="container mx-auto flex justify-around items-center w-full">
               <div className="flex items-center gap-4 cursor-pointer group">
-                <div className="bg-white rounded-full p-2 group-hover:scale-110 transition-transform">
+                <div className="bg-white rounded-full p-2 ">
                   <svg className="lg:w-14 lg:h-14 w-10 h-10" fill="currentColor">
                     <use href="/sprites.svg#logo" />
                   </svg>
