@@ -1,0 +1,16 @@
+{
+  "name": "Cocina Mica",
+  "short_name": "Cocina Mica",
+  "description": "Deliciosas viandas caseras para tu día a día",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

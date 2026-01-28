@@ -31,65 +31,61 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary/20 border-t border-gray-300">
-      <div className="container mx-auto px-4 py-8">
+    <footer className="bg-[url('/table-vertical-center-vacio.webp')] bg-cover border-t">
+      <div className="w-full py-10 bg-black/50">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex justify-center items-center gap-3">
               <div className="bg-white rounded-full">
                 <svg className="w-12 h-12" fill="currentColor">
                   <use href="/sprites.svg#logo" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-800">Cocina Mica</h2>
+              <h2 className="text-2xl font-bold text-white">Cocina Mica</h2>
             </div>
-            <p className="text-gray-600 text-center md:text-left">
+            <p className="text-white mx-10 text-center">
               Deliciosas viandas caseras para tu día a día.
             </p>
           </div>
 
           {/* Social Media */}
-          <div className="justify-self-center">
-            <FooterSection title="Seguinos en:">
-              <FooterLink className="flex items-center gap-2 hover:text-white" href="https://instagram.com/cocinamica.cm" target="_blank" rel="noopener noreferrer">
+          <div className="m-auto text-white">
+            <FooterSection title={<span className="text-white">Contactanos:</span>}>
+              <FooterLink className="flex items-center gap-2 hover:text-gray-800" href="https://instagram.com/cocinamica.cm" target="_blank" rel="noopener noreferrer">
                 <svg className="w-8 h-8 bg-linear-to-tr from-pink-600 to-purple-400" fill="currentColor">
                   <use href="/sprites.svg#ig" />
                 </svg>
-                <p>Instagram</p>
+                <p className="text-white">Instagram</p>
               </FooterLink>
-              <FooterLink className="flex items-center gap-2 hover:text-white" href="https://w.app/ndkegx" target="_blank" rel="noopener noreferrer">
+              <FooterLink className="flex items-center gap-2 hover:text-white" href="https://wa.link/44395n" isButton="true" target= "_blank" rel="noopener noreferrer">
                 <svg className="w-8 h-8" style={{ display: 'block' }}>
                   <use href="/sprites.svg#whatsapp" />
                 </svg>
-                <p>Whatsapp</p>
+                <p className="text-white">Whatsapp</p>
               </FooterLink>
             </FooterSection>
           </div>
-          <div className="justify-self-center">
+          <div className="m-auto text-cente">
             {/* Menu Links */}
-            <FooterSection title="Menú">
-              <FooterLink href="#nosotros">Nosotros</FooterLink>
-              <FooterLink href="#contacto">Contacto</FooterLink>
-              <FooterLink href="#milanesas">Milanesas Sin Tacc</FooterLink>
+            <FooterSection title={<span className="text-white">Menú</span>}>
+              <FooterLink href="#milanesas" className="text-white">Milanesas Sin Tacc</FooterLink>
               <FooterLink href="#pedido" className="font-semibold text-primary">
                 ¡Hacé tu pedido!
               </FooterLink>
             </FooterSection>
           </div>
-          <div className="justify-self-center">
+          <div className="m-auto text-center">
             {/* Contact Info */}
-            <FooterSection title="Contacto">
-              <FooterLink href="tel:+5492345423066">+54 9 2345 423066</FooterLink>
-              <FooterLink href="mailto:info@cocinamica.com">info@cocinamica.com</FooterLink>
-              <p className="text-gray-600 text-sm">Lunes a Viernes: hasta las 13hs</p>
+            <FooterSection title={<span className="text-white">Horarios</span>}>
+              <p className=" text-sm text-white">Lunes a Viernes: hasta las 13hs</p>
             </FooterSection>
           </div>
         </div>
 
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-300 text-center">
-          <p className="text-gray-600 text-sm">
+          <p className="text-sm text-white">
             © {currentYear} Cocina Mica. Todos los derechos reservados.
           </p>
         </div>

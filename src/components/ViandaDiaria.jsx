@@ -1,5 +1,7 @@
 import { useViandas } from '../hooks/useViandas';
 import PropTypes from 'prop-types';
+import OptimizedImage from './OptimizedImage';
+import LazySection from './LazySection';
 
 const PriceDisplay = ({ price, originalPrice, isPromo }) => {
   const formattedPrice = Number(price).toLocaleString('es-AR', {
@@ -11,7 +13,7 @@ const PriceDisplay = ({ price, originalPrice, isPromo }) => {
 
   return (
     <div className="flex items-center gap-3">
-      <p className="text-4xl md:text-5xl font-bold text-white">
+      <p className="text-3xl lg:text-4xl font-bold text-white">
         ${formattedPrice}
       </p>
       {isPromo && (
@@ -64,26 +66,26 @@ export const ViandaDiaria = () => {
   const isPromo = viandaDelDia.id === 6;
 
   return (
-    <section className="py-12 md:py-16">
+    <LazySection className="py-25">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="border-2 border-secondary bg-gray-900/70 backdrop-blur-sm rounded-lg overflow-hidden">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-6 md:p-8">
+          <div className="flex flex-col sm:flex-row  justify-center gap-4 lg:p-15 p-8">
             {/* Content Section */}
-            <div className="flex-1 text-center lg:text-left">
-              <div className="mb-6">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-secondary mb-6">
+            <div className="flex-1 content-center text-center">
+              <div className="mb-10">
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">
                   Vianda del día
                 </h2>
-                <p className="text-lg md:text-xl text-primary capitalize">
-                  {nombreDia}
-                </p>
               </div>
 
-              <div className="mb-10">
-                <h3 className="text-3xl md:text-4xl text-white mb-3">
+              <div className="mb-7 px-5 ">
+                <p className="text-2xl text-left md:text-xl mb-5 text-primary capitalize">
+                  {nombreDia}
+                </p>
+                <h3 className="text-3xl text-left md:text-3xl text-white">
                   {viandaDelDia.nombre}
                 </h3>
-                <p className="text-lg md:text-xl text-gray-200 mb-7">
+                <p className="text-lg text-left md:text-lg text-gray-200 mb-5 ">
                   {viandaDelDia.descripcion}
                 </p>
                 <PriceDisplay
@@ -93,25 +95,28 @@ export const ViandaDiaria = () => {
                 />
               </div>
 
-              <button className="bg-secondary text-white text-lg md:text-xl px-6 md:px-8 py-3 rounded-lg hover:bg-orange-400 transition-colors duration-200 font-semibold">
-                ¡Hacé tu pedido!
-              </button>
+              <a href="https://wa.link/44395n" isbutton="true" target= "_blank" rel='noopener noreferrer'>
+                <button className="mb-4 bg-secondary text-white text-md lg:text-xl px-8 py-3 rounded-lg hover:bg-orange-400 transition-colors duration-200 font-semibold cursor-pointer">
+                  ¡Hacé tu pedido!
+                </button>
+              </a>
             </div>
 
             {/* Image Section */}
-            <div className="flex-1 max-w-md lg:max-w-lg">
-              <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                <img
+            <div className="flex-1 max-w-md lg:max-w-lg self-center">
+              <div className="relative rounded-lg overflow-hidden shadow-2xl" style={{ width: '100%', height: '384px' }}>
+                <OptimizedImage
                   src={viandaDelDia.foto}
-                  className="w-full h-64 md:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
+                  className="hover:scale-105 transition-transform duration-300"
                   alt={viandaDelDia.nombre}
+                  width={512}
+                  height={384}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </LazySection>
   );
 };

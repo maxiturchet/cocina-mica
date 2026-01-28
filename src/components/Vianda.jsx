@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import OptimizedImage from './OptimizedImage';
 
 export const Vianda = ({ vianda }) => {
   const isPromo = vianda.id === "6";
@@ -7,13 +8,14 @@ export const Vianda = ({ vianda }) => {
   });
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="relative h-64 overflow-hidden">
-        <img
+    <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="relative w-full overflow-hidden" style={{ height: '256px' }}>
+        <OptimizedImage
           src={vianda.foto}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-          loading="lazy"
+          className="hover:scale-105 transition-transform duration-300"
           alt={vianda.nombre}
+          width={400}
+          height={256}
         />
         <div className="absolute top-2 left-2">
           {isPromo ? (
