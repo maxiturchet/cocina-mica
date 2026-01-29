@@ -58,7 +58,7 @@ export const Footer = () => {
                 </svg>
                 <p className="text-white">Instagram</p>
               </FooterLink>
-              <FooterLink className="flex items-center gap-2 hover:text-white" href="https://wa.link/44395n" isButton="true" target= "_blank" rel="noopener noreferrer">
+              <FooterLink className="flex items-center gap-2 hover:text-white" href="https://wa.link/44395n" isButton="true" target="_blank" rel="noopener noreferrer">
                 <svg className="w-8 h-8" style={{ display: 'block' }}>
                   <use href="/sprites.svg#whatsapp" />
                 </svg>
@@ -69,8 +69,10 @@ export const Footer = () => {
           <div className="m-auto text-cente">
             {/* Menu Links */}
             <FooterSection title={<span className="text-white">Menú</span>}>
-              <FooterLink href="#milanesas" className="text-white">Milanesas Sin Tacc</FooterLink>
-              <FooterLink href="#pedido" className="font-semibold text-primary">
+              <FooterLink href="#nosotros" className="text-white">Nosotros</FooterLink>
+              <FooterLink href="#viandas" className="text-white">Viandas</FooterLink>
+              <FooterLink href="#congelados" className="text-white">Congelados</FooterLink>
+              <FooterLink href='https://wa.link/44395n' target='_blank' rel='noopener noreferrer' className="font-semibold text-primary">
                 ¡Hacé tu pedido!
               </FooterLink>
             </FooterSection>

@@ -1,18 +1,36 @@
 import { useState, useEffect } from 'react';
 import { ViandaDiaria } from './ViandaDiaria';
-import { createBrowserRouter, RouterProvider, Link, Outlet } from 'react-router-dom';
 
-const NavLink = ({ href, children, className = "", isbutton = false, ...props }) => {
+const NavLink = ({ href, children, className = "", isButton = false, target, rel }) => {
   const baseClasses = "transition-all duration-200";
-  const buttonClasses = isbutton
+  const buttonClasses = isButton
     ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary md:text-sm lg:text-xl"
     : "hover:underline underline-offset-4 decoration-secondary";
 
-  if (href.startsWith('#') || href.startsWith('http')) {
-    return <a href={href} className={`${baseClasses} ${buttonClasses} ${className}`} {...props}>{children}</a>
-  }
-  return <Link build to={href} className={`${baseClasses} ${buttonClasses} ${className}`}>{children}</Link>
+  const handleClick = (e) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
 
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    // Si es un enlace externo (como WhatsApp), dejar el comportamiento por defecto
+  };
+
+  return (
+    <a
+      href={href}
+      className={`${baseClasses} ${buttonClasses} ${className}`}
+      onClick={handleClick}
+      target={target}
+      rel={rel}
+    >
+      {children}
+    </a>
+  );
 };
 
 export const Navbar = () => {
@@ -29,9 +47,10 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '/nosotros', text: 'Nosotros' },
-    { href: '/milanesas', text: 'Milanesas' },
-    { href: 'https://wa.link/44395n', text: '¡Hacé tu pedido!', isbutton: true, target: '_blank', rel: 'noopener noreferrer' },
+    { href: '#viandas', text: 'Viandas' },
+    { href: '#congelados', text: 'Congelados' },
+    { href: '#nosotros', text: 'Nosotros' },
+    { href: 'https://wa.link/44395n', text: '¡Hacé tu pedido!', isButton: true, target: '_blank', rel: 'noopener noreferrer' },
   ];
 
   return (
@@ -86,14 +105,14 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex w-full h-25 justify-center items-center">
             <div className="container mx-auto flex justify-around items-center w-full">
-              <div className="flex items-center gap-4 cursor-pointer group">
+              <a href="/" className="flex items-center gap-4 cursor-pointer group">
                 <div className="bg-white rounded-full p-2 ">
                   <svg className="lg:w-14 lg:h-14 w-10 h-10" fill="currentColor">
                     <use href="/sprites.svg#logo" />
                   </svg>
                 </div>
                 <h1 className="text-2xl text-white font-bold md:text-xl">Cocina Mica</h1>
-              </div>
+              </a>
 
               <ul className="flex items-center gap-6">
                 {navLinks.map((link) => (
@@ -101,8 +120,8 @@ export const Navbar = () => {
                     <NavLink
                       key={link.href}
                       href={link.href}
-                      className={`text-white md:text-lg lg:text-xl ${link.isbutton ? '' : 'hover:text-white'}`}
-                      isbutton={link.isbutton}
+                      className={`text-white md:text-lg lg:text-xl ${link.isButton ? '' : 'hover:text-white'}`}
+                      isButton={link.isButton}
                     >
                       {link.text}
                     </NavLink>
