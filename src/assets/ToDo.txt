@@ -1,5 +1,3 @@
 1. Arreglar el navbar para que se siga viendo cuando se scrollea. O agregar un botón para volver arriba.
-2. Terminar sección Congelados
 3. Terminar seccion Nosotros
 4. Ver como modificar la sección de viandas semanales los dias de semana.
-5. Buen banner para la sección de congelados. Algo distinto a la imagen actual.

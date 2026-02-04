@@ -39,7 +39,11 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (windows.ScrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      };
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -54,13 +58,15 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav>
-      <header className="relative">
-        {/* Hero Section with Background */}
-        <section className={`bg-[url('/cooking-top-vacio.webp')] bg-cover transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
-          }`} style={{ backgroundImage: `url('/cooking-top-vacio.webp')` }}>
+    <header className="relative">
+      {/* Sticky Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg'
+        : 'bg-transparent'
+        }`}>
+        <div className="container mx-auto px-4">
           {/* Mobile Navigation */}
-          <nav className="md:hidden w-full flex justify-between items-center shadow-lg px-6 py-3">
+          <div className="md:hidden flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
               <div className="bg-white rounded-full p-1">
                 <svg className="w-8 h-8" fill="currentColor">
@@ -83,7 +89,7 @@ export const Navbar = () => {
                 )}
               </svg>
             </button>
-          </nav>
+          </div>
 
           {/* Mobile Menu Dropdown */}
           {isOpen && (
@@ -103,37 +109,40 @@ export const Navbar = () => {
           )}
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex w-full h-25 justify-center items-center">
-            <div className="container mx-auto flex justify-around items-center w-full">
-              <a href="/" className="flex items-center gap-4 cursor-pointer group">
-                <div className="bg-white rounded-full p-2 ">
-                  <svg className="lg:w-14 lg:h-14 w-10 h-10" fill="currentColor">
-                    <use href="/sprites.svg#logo" />
-                  </svg>
-                </div>
-                <h1 className="text-2xl text-white font-bold md:text-xl">Cocina Mica</h1>
-              </a>
-
-              <ul className="flex items-center gap-6">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <NavLink
-                      key={link.href}
-                      href={link.href}
-                      className={`text-white md:text-lg lg:text-xl ${link.isButton ? '' : 'hover:text-white'}`}
-                      isButton={link.isButton}
-                    >
-                      {link.text}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
+          <div className="hidden md:flex justify-between items-center py-4">
+            <div className="flex items-center gap-4 cursor-pointer group">
+              <div className="bg-white rounded-full p-2 group-hover:scale-110 transition-transform">
+                <svg className="lg:w-14 lg:h-14 w-10 h-10" fill="currentColor">
+                  <use href="/sprites.svg#logo" />
+                </svg>
+              </div>
+              <h1 className="text-2xl text-white font-bold md:text-xl">Cocina Mica</h1>
             </div>
-          </nav>
 
-          <ViandaDiaria />
-        </section>
-      </header>
-    </nav>
+            <ul className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <NavLink
+                    href={link.href}
+                    className={`text-white md:text-lg lg:text-xl ${link.isButton ? '' : 'hover:text-white'}`}
+                    isButton={link.isButton}
+                    target={link.target}
+                    rel={link.rel}
+                  >
+                    {link.text}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section with Background */}
+      <section className={`bg-[url('/cooking-top-vacio.webp')] bg-cover transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
+        }`} style={{ backgroundImage: `url('/cooking-top-vacio.webp')` }}>
+        <ViandaDiaria />
+      </section>
+    </header>
   );
 };

@@ -2,8 +2,19 @@ import { useViandas } from '../hooks/useViandas';
 import { Vianda } from './Vianda';
 
 export const ViandasContainer = () => {
+  const today = new Date().getDay();
   const { viandas, loading, error } = useViandas();
 
+  if(today === 6 || today === 0) {
+    return(
+      <section className="py-15">
+        <div className="container mx-auto px-4 max-w-7xl text-center">
+          <p className="text-gray-600 font-bold text-3xl">Estamos armando el menú para la próxima semana.</p>
+        </div>
+      </section>
+    )
+  }
+  
   if (error) {
     return (
       <section className="py-15">

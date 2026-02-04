@@ -12,7 +12,7 @@ const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`relative ${className}`} style={{ aspectRatio: width && height ? `${width}/${height}` : '16/9', width: '100%', height: height ? `${height}px` : 'auto' }}>
+    <div className={`relative ${className}`} style={{ aspectRatio: width && height ? `${width}/${height}` : '4/3', width: '100%', height: height ? `${height}px` : 'auto' }}>
       <img
         src={src}
         alt={alt || ''}
