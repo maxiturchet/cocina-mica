@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { ViandaDiaria } from './ViandaDiaria';
 
 const NavLink = ({ href, children, className = "", isButton = false, target, rel }) => {
   const baseClasses = "transition-all duration-200";
   const buttonClasses = isButton
-    ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary md:text-sm lg:text-xl"
+    ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary"
     : "hover:underline underline-offset-4 decoration-secondary";
 
   const handleClick = (e) => {
@@ -39,9 +38,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (windows.ScrollY > 50) {
+      if(window.scrollY > 50){
+        console.log("Scrolled")
         setIsScrolled(true)
-      } else {
+      }else{
         setIsScrolled(false)
       };
     };
@@ -61,10 +61,10 @@ export const Navbar = () => {
     <header className="relative">
       {/* Sticky Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg'
-        : 'bg-transparent'
+        ? 'backdrop-blur-lg bg-gray-900/20'
+        : 'bg-gray-900/20'
         }`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto lg:px-20 sm:px-10 px-5">
           {/* Mobile Navigation */}
           <div className="md:hidden flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
@@ -119,12 +119,12 @@ export const Navbar = () => {
               <h1 className="text-2xl text-white font-bold md:text-xl">Cocina Mica</h1>
             </div>
 
-            <ul className="flex items-center gap-6">
+            <ul className="flex items-center gap-6 lg:gap-10">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <NavLink
                     href={link.href}
-                    className={`text-white md:text-lg lg:text-xl ${link.isButton ? '' : 'hover:text-white'}`}
+                    className={`text-white ${link.isButton ? '' : 'hover:text-white'}`}
                     isButton={link.isButton}
                     target={link.target}
                     rel={link.rel}
@@ -137,12 +137,6 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-
-      {/* Hero Section with Background */}
-      <section className={`bg-[url('/cooking-top-vacio.webp')] bg-cover transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
-        }`} style={{ backgroundImage: `url('/cooking-top-vacio.webp')` }}>
-        <ViandaDiaria />
-      </section>
     </header>
   );
 };

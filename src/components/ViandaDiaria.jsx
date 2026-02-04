@@ -14,7 +14,7 @@ const PriceDisplay = ({ price, originalPrice, isPromo }) => {
 
   return (
     <div className="gap-3">
-      <p className="text-4xl font-bold text-white lg:text-left">
+      <p className="md:text-4xl text-xl font-bold text-white text-left mb-4 border-2 sm:border-0 border-white p-2 rounded-lg sm:p-0 ">
         ${formattedPrice}
       </p>
       {isPromo && (
@@ -38,7 +38,7 @@ export const ViandaDiaria = () => {
   
     useEffect(() => {
       const handleScroll = () => {
-        if(windows.ScrollY > 50){
+        if(window.scrollY > 50){
           setIsScrolled(true)
         }else{
           setIsScrolled(false)
@@ -85,43 +85,43 @@ export const ViandaDiaria = () => {
   return (
       <LazySection className={`bg-[url('/table-vertical-center-vacio.webp')] bg-fixed bg-right md:bg-right transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
           }`} style={{ backgroundImage: `url('/table-vertical-center-vacio.webp')` }}>
-        <div className=" lg:py-25 lg:pl-15 w-full lg:w-2/3  container mx-auto px-4 max-w-7xl ">
+        <div className="pt-30 pb-10 xl:pt-40 xl:pb-30 w-full mx-auto lg:px-15 px-4 max-w-5xl ">
           <div className="border-2 border-secondary bg-gray-900/70 backdrop-blur-sm rounded-lg overflow-hidden">
-            <div className="flex flex-col sm:flex-row justify-center gap-4 lg:p-15 p-8">
+            <div className="flex flex-col sm:flex-row lg:justify-between justify-evenly gap-4 sm:py-10 sm:px-20 md:px-20 py-10">
               {/* Content Section */}
-              <div className="flex-1 content-center text-center">
-                <div className="lg:mb-10">
-                  <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+              <div className="flex flex-col mx-auto sm:justify-center justify-evenly gap-2 sm:w-1/2 w-full">
+                  <h2 className="text-2xl md:text-3xl font-bold text-secondary sm:text-left text-center mb-3">
                     Vianda del día
                   </h2>
-                </div>
 
-                <div className="mb-7 px-5 ">
-                  <p className="text-xl text-center lg:text-left lg:mb-5 mb-3 text-primary capitalize">
+                  <p className="text-xl sm:text-left text-center text-primary capitalize">
                     {nombreDia}
                   </p>
-                  <h3 className="text-3xl text-center lg:text-left  text-white">
-                    {viandaDelDia.nombre}
-                  </h3>
-                  <p className="text-lg text-center lg:text-left  text-gray-200 mb-5 ">
-                    {viandaDelDia.descripcion}
-                  </p>
-                  <PriceDisplay
-                    price={viandaDelDia.precio}
-                    originalPrice="60000"
-                    isPromo={isPromo}
-                  />
-                </div>
+                  <div className="sm:mb-2 mb-4">
+                    <h3 className="lg:text-3xl text-2xl font-bold sm:text-left text-center text-white">
+                      {viandaDelDia.nombre}
+                    </h3>
+                    <p className="lg:text-lg sm:text-left text-center text-gray-200">
+                      {viandaDelDia.descripcion}
+                    </p>
+                  </div>
+                  <div className="flex sm:flex-col sm:items-start justify-around items-center sm:gap-0 px-4 sm:px-0 gap-4">
+                    <PriceDisplay
+                      price={viandaDelDia.precio}
+                      originalPrice="60000"
+                      isPromo={isPromo}
+                    />
 
-                <a href="https://wa.link/44395n" isbutton="true" target= "_blank" rel='noopener noreferrer'>
-                  <button className="mb-4 bg-secondary text-white text-xl px-8 py-3 rounded-lg hover:bg-orange-400 transition-colors duration-200 font-semibold cursor-pointer">
-                    ¡Hacé tu pedido!
-                  </button>
-                </a>
+                    <a href="https://wa.link/44395n" isbutton="true" target= "_blank" rel='noopener noreferrer'>
+                      <button className="mb-4 bg-secondary text-white text-md p-2 py-3 lg:text-lg lg:px-8 lg:py-3 rounded-lg hover:bg-orange-400 transition-colors duration-200 font-semibold cursor-pointer">
+                        ¡Hacé tu pedido!
+                      </button>
+                    </a>
+                  </div>
               </div>
 
               {/* Image Section */}
-              <div className="flex-1 max-w-xs lg:max-w-lg self-center">
+              <div className="flex-1 max-w-sm lg:max-w-full self-center sm:px-0 px-4">
                 <div className="relative rounded-lg overflow-hidden shadow-2xl" style={{ width: '100%', height: '100%' }}>
                   <OptimizedImage
                     src={viandaDelDia.foto}

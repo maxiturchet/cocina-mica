@@ -1,15 +1,17 @@
 import './styles/output.css';
 import { ViandasContainer } from './components/ViandasContainer';
-import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Congelados } from './components/Congelados';
 import { Nosotros } from './components/Nosotros';
+import { ViandaDiaria } from './components/ViandaDiaria';
+import { Navbar } from './components/Navbar';
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
-      <main className="flex-1 mt-[80px]">
+      <ViandaDiaria />
+      <main className="flex-1">
         <section id="viandas">
           <ViandasContainer />
         </section>
