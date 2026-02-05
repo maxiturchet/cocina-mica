@@ -85,12 +85,12 @@ export const ViandaDiaria = () => {
   return (
       <LazySection className={`bg-[url('/table-vertical-center-vacio.webp')] bg-fixed bg-right md:bg-right transition-all duration-300 ${isScrolled ? 'min-h-[200px]' : 'min-h-[400px]'
           }`} style={{ backgroundImage: `url('/table-vertical-center-vacio.webp')` }}>
-        <div className="pt-30 pb-10 xl:pt-40 xl:pb-30 w-full mx-auto lg:px-15 px-4 max-w-5xl ">
-          <div className="border-2 border-secondary bg-gray-900/70 backdrop-blur-sm rounded-lg overflow-hidden">
+        <div className="pt-30 pb-10 xl:pt-60 xl:pb-30 w-full mx-auto lg:px-15 px-4 max-w-5xl ">
+          <div className="border-2 border-secondary bg-gray-800/70 backdrop-blur-sm rounded-lg overflow-hidden">
             <div className="flex flex-col sm:flex-row lg:justify-between justify-evenly gap-4 sm:py-10 sm:px-20 md:px-20 py-10">
               {/* Content Section */}
               <div className="flex flex-col mx-auto sm:justify-center justify-evenly gap-2 sm:w-1/2 w-full">
-                  <h2 className="text-2xl md:text-3xl font-bold text-secondary sm:text-left text-center mb-3">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white sm:text-left text-center mb-3">
                     Vianda del día
                   </h2>
 
@@ -113,7 +113,7 @@ export const ViandaDiaria = () => {
                     />
 
                     <a href="https://wa.link/44395n" isbutton="true" target= "_blank" rel='noopener noreferrer'>
-                      <button className="mb-4 bg-secondary text-white text-md p-2 py-3 lg:text-lg lg:px-8 lg:py-3 rounded-lg hover:bg-orange-400 transition-colors duration-200 font-semibold cursor-pointer">
+                      <button className="mb-4 bg-secondary/80 text-white text-md p-2 py-3 lg:text-lg lg:px-8 lg:py-3 rounded-lg hover:bg-secondary transition-colors duration-200 font-semibold cursor-pointer">
                         ¡Hacé tu pedido!
                       </button>
                     </a>

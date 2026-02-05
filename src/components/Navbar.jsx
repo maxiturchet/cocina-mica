@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const NavLink = ({ href, children, className = "", isButton = false, target, rel }) => {
-  const baseClasses = "transition-all duration-200";
+  const baseClasses = "";
   const buttonClasses = isButton
-    ? "bg-secondary border-2 border-secondary rounded-lg px-4 py-2 hover:bg-white hover:text-secondary"
-    : "hover:underline underline-offset-4 decoration-secondary";
+    ? "bg-secondary/80 border-2 border-secondary rounded-lg px-4 py-2 hover:bg-secondary"
+    : "hover:underline decoration-secondary underline-offset-8 hover:font-bold";
 
   const handleClick = (e) => {
     if (href.startsWith('#')) {
@@ -61,8 +61,8 @@ export const Navbar = () => {
     <header className="relative">
       {/* Sticky Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'backdrop-blur-lg bg-gray-900/20'
-        : 'bg-gray-900/20'
+        ? 'backdrop-blur-sm bg-gray-900/20'
+        : 'bg-gray-900/70'
         }`}>
         <div className="container mx-auto lg:px-20 sm:px-10 px-5">
           {/* Mobile Navigation */}
@@ -111,7 +111,7 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex justify-between items-center py-4">
             <div className="flex items-center gap-4 cursor-pointer group">
-              <div className="bg-white rounded-full p-2 group-hover:scale-110 transition-transform">
+              <div className="bg-white rounded-full p-2">
                 <svg className="lg:w-14 lg:h-14 w-10 h-10" fill="currentColor">
                   <use href="/sprites.svg#logo" />
                 </svg>
@@ -124,7 +124,7 @@ export const Navbar = () => {
                 <li key={link.href}>
                   <NavLink
                     href={link.href}
-                    className={`text-white ${link.isButton ? '' : 'hover:text-white'}`}
+                    className={`text-white ${link.isButton ? '' : 'hover:text-secondary'}`}
                     isButton={link.isButton}
                     target={link.target}
                     rel={link.rel}
